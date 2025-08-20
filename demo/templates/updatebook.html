@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Update Book</h2>
+{% if n %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="book_name">Book Name</label>
+    <input type="text" name="book_name" value="{{ n.book_name }}" id="book_name"><br><br>
+
+    <label for="author_name">Author Name</label>
+    <input type="text" name="author_name" value="{{ n.author_name }}" id="author_name"><br><br>
+
+    <label for="price">Price</label>
+    <input type="text" name="price" value="{{ n.price }}" id="price"><br><br>
+
+    <label for="category">Category</label>
+    <input type="text" name="category" value="{{ n.category }}" id="category"><br><br>
+
+    <label for="image">Image</label>
+    <input type="file" name="image" id="image"><br><br>
+
+    {% if n.image %}
+        <p>Current Image:</p>
+        <img src="{{ n.image.url }}" width="150" alt="Current Image"><br><br>
+    {% endif %}
+
+    <input type="submit" value="Update" name="update">
+</form>
+{% endif %}
+
+</body>
+</html>

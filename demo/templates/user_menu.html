@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    header{
+    text-align: center;
+    background-color:black;
+    color: orange;
+    padding: 100px;
+}
+section{
+    background-color:orange;
+    padding: 20px;
+}
+    .c1 {
+      padding: 20px;
+    }
+
+    /* Row */
+    .r1 {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    /* Column */
+    .col {
+      flex: 34;
+      text-align: center;
+      padding: 10px;
+      background-color: rgb(108, 102, 156);
+      margin: 5px;
+      color: white;
+      border-radius: 5px;
+    }
+
+    /* Headings */
+    .col h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+</style>
+<body>
+    <h2>About us</h2>
+    <p>Nestled in the heart of the city, The Royal Garden Inn offers a luxurious escape with elegant rooms, premium amenities, and world-class hospitality. Whether you're visiting for business or leisure, our serene ambiance, fine dining, and exceptional service ensure a truly memorable stay.
+</p>
+    <div class="container c1">
+                <h2>Menu Card</h2>
+                <div class="row r1">
+                {% for i in menu %}
+                    <div class="column col">
+                        <img src="/media/{{i.image}}"  width="100px">
+                        <h3>{{i.name}}</h3>
+                        <h2>ingredients</h2>
+                        <p>{{i.ingredients}}</p>
+                        <p>{{i.price}}</p>
+                    </div>
+                {% endfor %}
+
+                </div>
+        </div>
+    
+</body>
+</html>

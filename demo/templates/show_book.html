@@ -1,0 +1,27 @@
+<table>
+    <thead>
+        <tr>
+            <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in m %}
+        <tr>
+            <td>{{ i.book_name }}</td>
+            <td>{{ i.author_name }}</td>
+            <td>{{ i.price }}</td>
+            <td>{{ i.category }}</td>
+            <td>
+                <img src="/media/{{i.image}}"  width="100">
+            </td>
+            <td><a href="updatebook/{{i.id}}">Update</a></td>
+            <td><a class="" href="delete_book/{{i.id}}">delete</a></td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

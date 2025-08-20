@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Update Menu</h2>
+{% if y %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if y.image %}
+        <p>Current Image:</p>
+        <img src="{{ y.image.url }}" width="150" alt="Current Image"><br><br>
+    {% endif %}
+
+    <label for="image">Image</label>
+    <input type="file" name="image" id="image"><br><br>
+
+    <label for="name">Name</label>
+    <input type="text" name="name" value="{{ y.name }}" id="name"><br><br>
+
+    <label for="ingredients">Ingredients</label>
+    <input type="text" name="ingredients" value="{{ y.ingredients}}" id="ingrdients"><br><br>
+
+    <label for="price">Price</label>
+    <input type="text" name="price" value="{{ y.price }}" id="price"><br><br>
+
+
+    
+
+    <input type="submit" value="Update" name="update">
+</form>
+{% endif %}
+
+</body>
+</html>

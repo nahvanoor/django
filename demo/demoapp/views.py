@@ -183,3 +183,60 @@ def deletemenu(request,id):
     menucard.delete()
     # messages.success(request,'Deleted successfully!') 
     return HttpResponse("Menu deleted successfully.")
+
+
+def add_events(request):
+    if request.method=="POST" and 'submit' in request.POST:
+        event_name=request.POST['event_name']
+        event_date=request.POST['event_date']
+        start_time=request.POST['start_time']
+        end_time=request.POST['end_time']
+        total_participants=request.POST['total_participants']
+        event_venue=request.POST['event_venue']
+        event_location=request.POST['event_location']
+        event_ticket_price=request.POST['event_ticket_price']
+        event_guest=request.POST['event_guest']
+        event_poster=request.FILES['event_poster']
+        event=Event(event_name=event_name,event_date=event_date,start_time=start_time,end_time=end_time,total_participants=total_participants,event_venue=event_venue,event_location=event_location,event_ticket_price=event_ticket_price,event_guest=event_guest,event_poster=event_poster)
+        event.save()
+        messages.success(request,"Submitted Successfully")
+    return render(request,'add_events.html')
+
+def show_events(request):
+    event=Event.objects.all()
+    return render(request,'show_events.html',{'event':event})
+
+def update_events(request,id):
+    event=Event.objects.get(id=id)
+    if 'update' in request.POST:
+        event_name=request.POST.get('event_name')
+        event_date=request.POST.get('event_date')
+        start_time=request.POST.get('start_time')
+        end_time=request.POST.get('end_time')
+        total_participants=request.POST.get('total_participants')
+        event_venue=request.POST.get('event_venue')
+        event_location=request.POST.get('event_location')
+        event_ticket_price=request.POST.get('event_ticket_price')
+        event_guest=request.POST.get('event_guest')
+        event_poster=request.FILES.get('event_poster')
+        event.event_name=event_name
+        event.event_date=event_date
+        event.start_time=start_time
+        event.end_time=end_time
+        event.total_participants=total_participants
+        event.event_venue=event_venue
+        event.event_location=event_location
+        event.event_ticket_price=event_ticket_price
+        event.event_guest=event_guest
+        
+        if event_poster:
+            event.event_poster=event_poster
+            
+        event.save()
+        messages.success(request,"Updated Successfully")
+        
+    return render(request,'update_event.html',{'event':event})
+
+def user_events(request):
+    event=Event.objects.all()
+    return render(request,'user_events.html',{'event':event})

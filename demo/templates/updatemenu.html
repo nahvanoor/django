@@ -4,36 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h2>Update Menu</h2>
-{% if y %}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    {% if y.image %}
-        <p>Current Image:</p>
-        <img src="{{ y.image.url }}" width="150" alt="Current Image"><br><br>
-    {% endif %}
-
-    <label for="image">Image</label>
-    <input type="file" name="image" id="image"><br><br>
-
-    <label for="name">Name</label>
-    <input type="text" name="name" value="{{ y.name }}" id="name"><br><br>
-
-    <label for="ingredients">Ingredients</label>
-    <input type="text" name="ingredients" value="{{ y.ingredients}}" id="ingrdients"><br><br>
-
-    <label for="price">Price</label>
-    <input type="text" name="price" value="{{ y.price }}" id="price"><br><br>
+    <div class="container mt-5 mb-5">
+        <div class="card shadow-lg">
+            <h2 class="text-center p-lg-3">Update Menu</h2>
+            {% if y %}
+            <form method="post" enctype="multipart/form-data" class="form-control">
 
 
-    
+                {% if y.image %}
+                    <p>Current Image:</p>
+                    <img src="/media/{{y.image}}" width="100" alt="Current Image" ><br>
+                {% endif %}
 
-    <input type="submit" value="Update" name="update">
-</form>
-{% endif %}
+                <label for="image" class="form-label">Image</label>
+                <input type="file" name="image" id="image" class="form-control"><br>
 
+                <label for="name" class="form-label">Name</label>
+                <input type="text" name="name" value="{{ y.name }}" id="name" class="form-control"><br>
+
+                <label for="ingredients" class="form-label">Ingredients</label>
+                <input type="text" name="ingredients" value="{{ y.ingredients}}" id="ingrdients" class="form-control"><br>
+
+                <label for="price" class="form-label">Price</label>
+                <input type="text" name="price" value="{{ y.price }}" id="price" class="form-control"><br>
+
+
+                
+
+                <input type="submit" value="Update" name="update" class="btn btn-primary">
+            </form>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>

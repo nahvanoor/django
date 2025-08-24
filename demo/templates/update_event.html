@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Event</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5 mb-5">
+        <div class="card">
+            <h1 class="text-center p-lg-3">UPDATE EVENT</h1>
+            {%if messages%}
+                    {%for message in messages%}
+                        <div class="alert alert-success">{{message}}</div>
+                    {%endfor%}
+            {%endif%}
+            {%if event%}
+            <form action="" method="post" enctype="multipart/form-data" class="form-control">
+                <label for="event_name" class="form-label">Event Name: </label>
+                <input type="text" id="event_name" name="event_name" value="{{event.event_name}}" class="form-control"><br>
+                <label for="event_date" class="form-label">Event Date: </label>
+                <input type="date" id="event_date" name="event_date" value="{{event.event_date}}"class="form-control"><br>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="start_time" class="form-label">Start Time: </label>
+                        <input type="time" id="start_time" name="start_time" value="{{event.start_time}}" class="form-control"><br>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="end_time" class="form-label">End Time: </label>
+                        <input type="time" id="end_time" name="end_time" value="{{event.end_time}}" class="form-control"><br>
+                    </div>
+                </div>
+                <label for="total_participants" class="form-label">Total Participants: </label>
+                <input type="number" id="total_participants" name="total_participants" value="{{event.total_participants}}" class="form-control"><br>
+                <label for="event_venue" class="form-label">Event Venue: </label>
+                <input type="text" id="event_venue" name="event_venue" value="{{event.event_venue}}" class="form-control"><br>
+                <label for="event_location" class="form-label">Event Location: </label>
+                <input type="text" id="event_location" name="event_location" value="{{event.event_location}}" class="form-control"><br>
+                <label for="event_ticket_price" class="form-label">Event Ticket Price: </label>
+                <input type="text" id="event_ticket_price" name="event_ticket_price" value="{{event.event_ticket_price}}" class="form-control"><br>
+                <label for="event_guest" class="form-label">Event Guest: </label>
+                <input type="text" id="event_guest" name="event_guest" value="{{event.event_guest}}" class="form-control"><br>
+                <label for="event_poster" class="form-label">Event Poster: </label>
+                <input type="file" name="event_poster" id="event_poster" class="form-control"><br>
+
+                {%if event.event_poster%}
+                <p>Current Poster</p>
+                <img src="/media/{{event.event_poster}}" width="100">
+                {%endif%}
+
+                <input type="submit" value="Update" name="update" class="btn btn-primary">
+            </form>
+            {%endif%}
+        </div>
+    </div>
+</body>
+</html>
